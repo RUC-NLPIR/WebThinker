@@ -89,63 +89,63 @@ Now you can run different inference modes using the provided scripts. Below are 
 ### Problem Solving Mode
 
 1. If you would like to ask a single question, run the following command:
-```bash
-python scripts/run_web_thinker.py \
-    --single_question "What is OpenAI Deep Research?" \
-    --bing_subscription_key "YOUR_BING_SUBSCRIPTION_KEY" \
-    --api_base_url "YOUR_API_BASE_URL" \
-    --model_name "QwQ-32B" \
-    --aux_api_base_url "YOUR_AUX_API_BASE_URL" \
-    --aux_model_name "Qwen2.5-32B-Instruct" \
-    --tokenizer_path "PATH_TO_YOUR_TOKENIZER" \
-    --aux_tokenizer_path "PATH_TO_YOUR_AUX_TOKENIZER"
-```
+    ```bash
+    python scripts/run_web_thinker.py \
+        --single_question "What is OpenAI Deep Research?" \
+        --bing_subscription_key "YOUR_BING_SUBSCRIPTION_KEY" \
+        --api_base_url "YOUR_API_BASE_URL" \
+        --model_name "QwQ-32B" \
+        --aux_api_base_url "YOUR_AUX_API_BASE_URL" \
+        --aux_model_name "Qwen2.5-32B-Instruct" \
+        --tokenizer_path "PATH_TO_YOUR_TOKENIZER" \
+        --aux_tokenizer_path "PATH_TO_YOUR_AUX_TOKENIZER"
+    ```
 
 2. If you would like to run results on benchmarks, run the following command:
-```bash
-python scripts/run_web_thinker.py \
-    --dataset_name gaia \
-    --split dev \
-    --concurrent_limit 32 \
-    --max_search_limit 15 \
-    --bing_subscription_key "YOUR_BING_SUBSCRIPTION_KEY" \
-    --api_base_url "YOUR_API_BASE_URL" \
-    --model_name "QwQ-32B" \
-    --aux_api_base_url "YOUR_AUX_API_BASE_URL" \
-    --aux_model_name "Qwen2.5-32B-Instruct" \
-    --tokenizer_path "PATH_TO_YOUR_TOKENIZER" \
-    --aux_tokenizer_path "PATH_TO_YOUR_AUX_TOKENIZER"
-```
+    ```bash
+    python scripts/run_web_thinker.py \
+        --dataset_name gaia \
+        --split dev \
+        --concurrent_limit 32 \
+        --max_search_limit 15 \
+        --bing_subscription_key "YOUR_BING_SUBSCRIPTION_KEY" \
+        --api_base_url "YOUR_API_BASE_URL" \
+        --model_name "QwQ-32B" \
+        --aux_api_base_url "YOUR_AUX_API_BASE_URL" \
+        --aux_model_name "Qwen2.5-32B-Instruct" \
+        --tokenizer_path "PATH_TO_YOUR_TOKENIZER" \
+        --aux_tokenizer_path "PATH_TO_YOUR_AUX_TOKENIZER"
+    ```
 
 ### Report Generation Mode
 
 1. If you would like to ask a single question, run the following command:
-```bash
-python scripts/run_web_thinker_report.py \
-    --single_question "What are the models of OpenAI and what are the differences?" \
-    --bing_subscription_key "YOUR_BING_SUBSCRIPTION_KEY" \
-    --api_base_url "YOUR_API_BASE_URL" \
-    --model_name "QwQ-32B" \
-    --aux_api_base_url "YOUR_AUX_API_BASE_URL" \
-    --aux_model_name "Qwen2.5-32B-Instruct" \
-    --tokenizer_path "PATH_TO_YOUR_TOKENIZER" \
-    --aux_tokenizer_path "PATH_TO_YOUR_AUX_TOKENIZER"
-```
+    ```bash
+    python scripts/run_web_thinker_report.py \
+        --single_question "What are the models of OpenAI and what are the differences?" \
+        --bing_subscription_key "YOUR_BING_SUBSCRIPTION_KEY" \
+        --api_base_url "YOUR_API_BASE_URL" \
+        --model_name "QwQ-32B" \
+        --aux_api_base_url "YOUR_AUX_API_BASE_URL" \
+        --aux_model_name "Qwen2.5-32B-Instruct" \
+        --tokenizer_path "PATH_TO_YOUR_TOKENIZER" \
+        --aux_tokenizer_path "PATH_TO_YOUR_AUX_TOKENIZER"
+    ```
 
 2. If you would like to run results on benchmarks, run the following command:
-```bash
-python scripts/run_web_thinker_report.py \
-    --dataset_name glaive \
-    --split test \
-    --concurrent_limit 32 \
-    --bing_subscription_key "YOUR_BING_SUBSCRIPTION_KEY" \
-    --api_base_url "YOUR_API_BASE_URL" \
-    --model_name "QwQ-32B" \
-    --aux_api_base_url "YOUR_AUX_API_BASE_URL" \
-    --aux_model_name "Qwen2.5-32B-Instruct" \
-    --tokenizer_path "PATH_TO_YOUR_TOKENIZER" \
-    --aux_tokenizer_path "PATH_TO_YOUR_AUX_TOKENIZER"
-```
+    ```bash
+    python scripts/run_web_thinker_report.py \
+        --dataset_name glaive \
+        --split test \
+        --concurrent_limit 32 \
+        --bing_subscription_key "YOUR_BING_SUBSCRIPTION_KEY" \
+        --api_base_url "YOUR_API_BASE_URL" \
+        --model_name "QwQ-32B" \
+        --aux_api_base_url "YOUR_AUX_API_BASE_URL" \
+        --aux_model_name "Qwen2.5-32B-Instruct" \
+        --tokenizer_path "PATH_TO_YOUR_TOKENIZER" \
+        --aux_tokenizer_path "PATH_TO_YOUR_AUX_TOKENIZER"
+    ```
 
 **Parameters Explanation:**
 - `--dataset_name`: Name of the dataset to use (e.g., gaia, glaive).
