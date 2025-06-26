@@ -1,0 +1,83 @@
+[tool.poetry]
+name = "web-thinker"
+version = "0.1.0"
+description = "A project for web search and thinking capabilities"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [{include = "scripts"}, {include = "demo"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+torch = "^2.5.0"
+transformers = "^4.46.0"
+sentencepiece = "^0.2.0"
+# vllm = "0.6.4"  # Commented out due to system dependencies
+tqdm = "^4.67.0"
+nltk = "^3.9.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+pytest-cov = "^5.0.0"
+pytest-mock = "^3.14.0"
+
+[tool.poetry.scripts]
+test = "pytest:main"
+tests = "pytest:main"
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--strict-markers",
+    "--verbose",
+    "--cov=scripts",
+    "--cov=demo",
+    "--cov-report=html",
+    "--cov-report=xml",
+    "--cov-report=term-missing",
+    # "--cov-fail-under=80",  # Uncomment when actual tests are written
+]
+markers = [
+    "unit: Unit tests",
+    "integration: Integration tests",
+    "slow: Slow running tests",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]
+
+[tool.coverage.run]
+source = ["scripts", "demo"]
+omit = [
+    "*/tests/*",
+    "*/__pycache__/*",
+    "*/test_*.py",
+    "*/*_test.py",
+    "*/conftest.py",
+    "*/setup.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if __name__ == .__main__.:",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+]
+precision = 2
+show_missing = true
+skip_covered = false
+
+[tool.coverage.html]
+directory = "htmlcov"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
