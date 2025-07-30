@@ -271,6 +271,10 @@ If you find this work helpful, please cite our paper:
 
 This project is released under the [MIT License](LICENSE).
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=RUC-NLPIR/WebThinker&type=Date)](https://www.star-history.com/#RUC-NLPIR/WebThinker&Date)
+
 ## 📞 Contact
 
 For any questions or feedback, please reach out to us at [xiaoxi_li@ruc.edu.cn](xiaoxi_li@ruc.edu.cn).
