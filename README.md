@@ -24,6 +24,7 @@
 
 ## 📣 Latest News
 
+- **[Sep 18, 2025]**: 🎉 Our paper **[WebThinker: Empowering Large Reasoning Models with Deep Research Capability](https://arxiv.org/abs/2504.21776)** has been accepted at Neurips 2025!
 - **[May 30, 2025]**: 🔍 WebThinker now supports **[Google Serper API](https://serper.dev/)** for web search! Important: **[Bing Search API](https://www.microsoft.com/en-us/bing/apis/bing-web-search-api)** will be retired in August 2025.
 - **[May 9, 2025]**: The brief introduction of WebThinker can be found on platforms like **[X](https://x.com/kakakbibibi/status/1917768235069628823)**, **[Zhihu](https://zhuanlan.zhihu.com/p/1903981050780192911)**, and **[WeChat](https://mp.weixin.qq.com/s/lVrTZQLmrJkkG5QYcEZTFA)**.
 - **[May 1, 2025]**: 🤗 **[WebThinker Model Collection](https://huggingface.co/collections/lixiaoxi45/webthinker-6812d5fd1287ee53d68f0557)** is now available on Hugging Face. You can deploy our optimized models for your deep research tasks.
