@@ -30,21 +30,12 @@ from evaluate.evaluate import (
     extract_answer_fn
 )
 from prompts.prompts import (
-    get_gpqa_search_o1_instruction, 
-    get_gpqa_web_thinker_instruction, 
     get_deep_web_explorer_instruction, 
     get_web_page_reader_instruction,
     get_search_intent_instruction,
     get_click_intent_instruction,
-    get_math_search_o1_instruction, 
-    get_code_search_o1_instruction, 
-    get_singleqa_search_o1_instruction, 
     get_multiqa_search_o1_instruction, 
-    get_deepseek_multiqa_search_o1_instruction,
     get_task_instruction_openqa, 
-    get_task_instruction_math, 
-    get_task_instruction_multi_choice, 
-    get_task_instruction_code, 
 )
 from transformers import AutoTokenizer
 

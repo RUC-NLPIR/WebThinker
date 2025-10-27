@@ -52,7 +52,6 @@ from rank_bm25 import BM25Okapi
 import nltk
 from nltk.tokenize import word_tokenize
 # nltk.download('punkt')
-import langid
 from transformers import AutoTokenizer
 
 
@@ -167,16 +166,6 @@ def extract_markdown_content(text):
     if match:
         return match.group(1)
     return text
-
-def judge_zh(input_str: str):
-    assert isinstance(input_str, str), input_str
-    if len(input_str) == 0:
-        return False
-    detect_result = langid.classify(input_str)
-    if detect_result[0] == 'zh':
-        return True
-    else:
-        return False
 
 
 
