@@ -31,6 +31,30 @@
 - **[March 31, 2025]**: 🎉 **[WebThinker Notion Page](https://foremost-beechnut-8ed.notion.site/WebThinker-Empowering-Large-Reasoning-Models-with-Deep-Research-Capability-d13158a27d924a4b9df7f9ab94066b64)** launched with comprehensive project details.
 - **[March 31, 2025]**: 🚀 Full codebase released. WebThinker now supports deep research with open-source reasoning models like QwQ-32B.
 
+## 🔥 Deep Research Agent Family
+
+<details open><summary>Welcome to try our deep research agent series: </summary><p>
+
+
+> [**DeepAgent: A General Reasoning Agent with Scalable Toolsets (New!)**](https://arxiv.org/abs/2510.21618) <br>
+> **Authors:** Xiaoxi Li, Wenxiang Jiao, Jiarui Jin, Guanting Dong, Jiajie Jin, Yinuo Wang, Hao Wang, Yutao Zhu, Ji-Rong Wen, Yuan Lu, Zhicheng Dou <br>
+> **TLDR:** An end-to-end deep reasoning agent that performs autonomous thinking, tool discovery, and action execution with brain-inspired memory folding mechanism. <br>
+[![github](https://img.shields.io/badge/-Github-black?logo=github)](https://github.com/RUC-NLPIR/DeepAgent) [![github](https://img.shields.io/github/stars/RUC-NLPIR/DeepAgent.svg?style=social)](https://github.com/RUC-NLPIR/DeepAgent) [![arXiv](https://img.shields.io/badge/Arxiv-2510.21618-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2510.21618) [![Paper](https://img.shields.io/badge/Hugging%20Face-Paper-yellow?logo=huggingface)](https://huggingface.co/papers/2510.21618)
+
+
+ > [**WebThinker: Exploring the Deep Web with Powerful Reasoning Capability  (NeurIPS 2025)**](https://arxiv.org/abs/2504.21776) <br>
+> **Authors:** Xiaoxi Li*, Jiajie Jin*, Guanting Dong*, Hongjin Qian, Yutao Zhu, Yongkang Wu, Ji-Rong Wen, Zhicheng Dou <br>
+> **TLDR:** A deep research agent that empowers large reasoning models with autonomous search, web browsing, and research report drafting capabilities. <br>
+[![github](https://img.shields.io/badge/-Github-black?logo=github)](https://github.com/RUC-NLPIR/WebThinker) [![github](https://img.shields.io/github/stars/RUC-NLPIR/WebThinker.svg?style=social)](https://github.com/RUC-NLPIR/WebThinker) [![arXiv](https://img.shields.io/badge/Arxiv-2504.21776-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2504.21776) [![Paper](https://img.shields.io/badge/Hugging%20Face-Paper-yellow?logo=huggingface)](https://huggingface.co/papers/2504.21776)
+
+> [**Search-o1: Agentic Search-Enhanced Large Reasoning Models (EMNLP 2025)**](https://arxiv.org/abs/2501.05366) <br>
+> **Authors:** Xiaoxi Li, Guanting Dong, Jiajie Jin, Yuyao Zhang, Yujia Zhou, Yutao Zhu, Peitian Zhang, Zhicheng Dou <br>
+> **TLDR:** An agentic search-enhanced framework that integrates autonomous knowledge retrieval with large reasoning models through Agentic RAG and reasoning-in-documents modules. <br>
+[![github](https://img.shields.io/badge/-Github-black?logo=github)](https://github.com/RUC-NLPIR/Search-o1) [![github](https://img.shields.io/github/stars/RUC-NLPIR/Search-o1.svg?style=social)](https://github.com/RUC-NLPIR/Search-o1) [![arXiv](https://img.shields.io/badge/Arxiv-2501.16399-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2501.05366) [![Paper](https://img.shields.io/badge/Hugging%20Face-Paper-yellow?logo=huggingface)](https://huggingface.co/papers/2501.05366) [![Project Page](https://img.shields.io/badge/Project-Page-green)](https://search-o1.github.io/)
+</p></details>
+
+
+
 ## 🎬 Demo
 
 <div align="center">
