@@ -14,7 +14,7 @@ import string
 from typing import Optional, Tuple
 from nltk.tokenize import sent_tokenize
 from typing import List, Dict, Union
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 import aiohttp
 import asyncio
 import chardet
@@ -30,12 +30,28 @@ headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                   'AppleWebKit/537.36 (KHTML, like Gecko) '
                   'Chrome/58.0.3029.110 Safari/537.36',
-    'Referer': 'https://www.google.com/',
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
     'Accept-Language': 'en-US,en;q=0.5',
     'Connection': 'keep-alive',
     'Upgrade-Insecure-Requests': '1'
 }
+
+DEFAULT_REFERER = 'https://www.google.com/'
+WIKIMEDIA_USER_AGENT = (
+    'WebThinkerResearchBot/0.1 '
+    '(https://github.com/RUC-NLPIR/WebThinker; academic research)'
+)
+
+
+def request_headers_for_url(url: str) -> Dict[str, str]:
+    request_headers = dict(headers)
+    hostname = (urlparse(url).hostname or '').lower()
+    if hostname.endswith(('.wikipedia.org', '.wikimedia.org', '.wikimediafoundation.org')):
+        request_headers['User-Agent'] = WIKIMEDIA_USER_AGENT
+    else:
+        request_headers['Referer'] = DEFAULT_REFERER
+    return request_headers
+
 
 # Initialize session
 session = requests.Session()
@@ -179,7 +195,11 @@ def extract_text_from_url(url, use_jina=False, jina_api_key=None, snippet: Optio
                 return extract_pdf_text(url)
 
             try:
-                response = session.get(url, timeout=30)
+                response = session.get(
+                    url,
+                    timeout=30,
+                    headers=request_headers_for_url(url),
+                )
                 response.raise_for_status()
                 
                 # 添加编码检测和处理
@@ -196,8 +216,7 @@ def extract_text_from_url(url, use_jina=False, jina_api_key=None, snippet: Optio
                 has_error = (any(indicator.lower() in response.text.lower() for indicator in error_indicators) and len(response.text.split()) < 64) or response.text == ''
                 if has_error:
                     if WebParserClient_url is None:
-                        # If WebParserClient is not available, return error message
-                        return f"Error extracting content: {str(e)}"
+                        return f"Error extracting content: empty or blocked response from {url}"
                     # If content has error, use WebParserClient as fallback
                     client = WebParserClient(WebParserClient_url)
                     results = client.parse_urls([url])
@@ -502,6 +521,23 @@ class RateLimiter:
 # 创建全局速率限制器实例
 jina_rate_limiter = RateLimiter(rate_limit=130)  # 每分钟xxx次，避免报错
 
+async def fetch_with_requests_fallback(
+    url: str,
+    use_jina: bool = False,
+    jina_api_key: Optional[str] = None,
+    snippet: Optional[str] = None,
+    keep_links: bool = False,
+) -> str:
+    return await asyncio.to_thread(
+        extract_text_from_url,
+        url,
+        use_jina,
+        jina_api_key,
+        snippet,
+        keep_links,
+    )
+
+
 async def extract_text_from_url_async(url: str, session: aiohttp.ClientSession, use_jina: bool = False, 
                                     jina_api_key: Optional[str] = None, snippet: Optional[str] = None, 
                                     keep_links: bool = False) -> str:
@@ -527,7 +563,16 @@ async def extract_text_from_url_async(url: str, session: aiohttp.ClientSession, 
                 text = await extract_pdf_text_async(url, session)
                 return text[:10000]
 
-            async with session.get(url) as response:
+            async with session.get(url, headers=request_headers_for_url(url)) as response:
+                if response.status >= 400:
+                    return await fetch_with_requests_fallback(
+                        url,
+                        use_jina=use_jina,
+                        jina_api_key=jina_api_key,
+                        snippet=snippet,
+                        keep_links=keep_links,
+                    )
+
                 # 检测和处理编码
                 content_type = response.headers.get('content-type', '').lower()
                 if 'charset' in content_type:
@@ -546,8 +591,13 @@ async def extract_text_from_url_async(url: str, session: aiohttp.ClientSession, 
                 # has_error = len(html.split()) < 64
                 if has_error:
                     if WebParserClient_url is None:
-                        # If WebParserClient is not available, return error message
-                        return f"Error extracting content: {str(e)}"
+                        return await fetch_with_requests_fallback(
+                            url,
+                            use_jina=use_jina,
+                            jina_api_key=jina_api_key,
+                            snippet=snippet,
+                            keep_links=keep_links,
+                        )
                     # If content has error, use WebParserClient as fallback
                     client = WebParserClient(WebParserClient_url)
                     results = client.parse_urls([url])
@@ -596,8 +646,14 @@ async def extract_text_from_url_async(url: str, session: aiohttp.ClientSession, 
         else:
             return text[:50000]
 
-    except Exception as e:
-        return f"Error fetching {url}: {str(e)}"
+    except Exception:
+        return await fetch_with_requests_fallback(
+            url,
+            use_jina=use_jina,
+            jina_api_key=jina_api_key,
+            snippet=snippet,
+            keep_links=keep_links,
+        )
 
 async def fetch_page_content_async(urls: List[str], use_jina: bool = False, jina_api_key: Optional[str] = None, 
                                  snippets: Optional[Dict[str, str]] = None, show_progress: bool = False,
