@@ -293,7 +293,7 @@ async def generate_deep_web_explorer(
                     # If search query was already executed, append message and continue
                     search_result = f"\n{BEGIN_SEARCH_RESULT}\nYou have already searched for this query. Please use the previously found information.\n{END_SEARCH_RESULT}\n"
                     output += search_result
-                    prompt += output
+                    prompt = original_prompt + output
                     total_tokens += len(search_result.split())
                     continue
 
@@ -328,7 +328,7 @@ async def generate_deep_web_explorer(
                 # Append search results
                 search_result = f"\n{BEGIN_SEARCH_RESULT}\n{formatted_documents}\n{END_SEARCH_RESULT}\n"
                 output += search_result
-                prompt += output
+                prompt = original_prompt + output
                 total_tokens += len(search_result.split())
                 
         # Check for click link
@@ -353,7 +353,7 @@ async def generate_deep_web_explorer(
                     # If URL was already clicked, append message
                     click_result = f"\n{BEGIN_CLICK_RESULT}\nYou have already clicked this URL.\n{END_CLICK_RESULT}\nOK, let me use the previously found information."
                     output += click_result
-                    prompt += output
+                    prompt = original_prompt + output
                     total_tokens += len(click_result.split())
                     continue
 
@@ -400,7 +400,7 @@ async def generate_deep_web_explorer(
                 # Append click results
                 click_result = f"\n{BEGIN_CLICK_RESULT}\n{summary}\n{END_CLICK_RESULT}\n"
                 output += click_result
-                prompt += output
+                prompt = original_prompt + output
                 total_tokens += len(click_result.split())
         
         else:
@@ -410,7 +410,7 @@ async def generate_deep_web_explorer(
     # Add max limit message if needed
     if not finished and (total_tokens >= MAX_TOKENS or total_interactions >= MAX_INTERACTIONS):
         output += f"\n{BEGIN_CLICK_RESULT}\nYou have reached the limit for clicking links.\n{END_CLICK_RESULT}\n\nOK, I will now provide the final information based on my collected information.\n\n**Final Information:**"
-        prompt += output
+        prompt = original_prompt + output
         _, final_response = await generate_response(
             client=client if 'qwq' in args.model_name.lower() else aux_client,
             model_name=args.model_name if 'qwq' in args.model_name.lower() else args.aux_model_name,
